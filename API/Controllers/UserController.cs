@@ -10,15 +10,16 @@ namespace API.Controllers {
     
     public class UserController : BaseApiController {
         private readonly DataContext _context;
+        
         public UserController (DataContext context) {
             _context = context;
         }
 
+        // api/users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers(){
             return await _context.Users.ToListAsync();
         }
-
 
         // api/users/32
         [HttpGet("{id}")]

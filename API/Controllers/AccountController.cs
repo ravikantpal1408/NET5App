@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers {
     public class AccountController : BaseApiController {
         private readonly DataContext _context;
+
         public AccountController (DataContext context) {
             _context = context;
 
@@ -56,8 +57,6 @@ namespace API.Controllers {
             }
 
             return user;
-
-
         }
 
         private async Task<bool> UserExists(string username){
