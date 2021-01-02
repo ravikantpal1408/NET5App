@@ -22,7 +22,7 @@ dotnet sln add API : adding API into root sln file <br>
 ===================================================================================
 
 ## Dotnet EF 
-- dotnet tool install --global dotnet-ef --version 5.0.0-rc.1.20451.13
+- dotnet tool install --global dotnet-ef --version 5.0.0-rc.2.20475.6
 
 ## Migrations : 
 - dotnet ef migrations add InitialCreate -o Data/Migrations

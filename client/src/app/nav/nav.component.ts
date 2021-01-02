@@ -1,6 +1,8 @@
+import { User } from './../_models/user';
 import { AccountService } from './../_services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -12,19 +14,21 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 export class NavComponent implements OnInit {
 
   model: any = {};
-  loggedIn: boolean = false;
+  // loggedIn: boolean = false;
+  currentUser$: Observable<User>;
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    // this.getCurrentUser();
+    this.currentUser$ = this.accountService.currentUser$;
   }
 
   login() {
     console.log(this.model);
     this.accountService.loginService(this.model).subscribe(res=>{
       console.log(res);
-      this.loggedIn = true;
+      // this.loggedIn = true;
     }, error => {
       console.log(error);
     });
@@ -33,14 +37,14 @@ export class NavComponent implements OnInit {
   logout(){
     console.log('logout 😎');
     this.accountService.logout();
-    this.loggedIn = false;
+    // this.loggedIn = false;
     this.model = {};
   }
 
-  getCurrentUser() {
-    this.accountService.currentUser$.subscribe(user => {
-      this.loggedIn = !!user;
-    }, error => console.log(error));
-  }
+  // getCurrentUser() {
+  //   this.accountService.currentUser$.subscribe(user => {
+  //     this.loggedIn = !!user;
+  //   }, error => console.log(error));
+  // }
 
 }
